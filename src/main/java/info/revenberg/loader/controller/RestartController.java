@@ -1,6 +1,6 @@
 package info.revenberg.loader.controller;
 
-import info.revenberg.loader.SpringBatchApplication;
+import info.revenberg.loader.SpringBatchLoaderApplication;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +10,6 @@ public class RestartController {
      
     @RequestMapping("/restart")
     public void restart() {
-        SpringBatchApplication.restart();        
+        SpringBatchLoaderApplication.restart();        
     } 
 }

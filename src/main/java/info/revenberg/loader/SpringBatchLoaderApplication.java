@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 // http://localhost:8099/invokejob
 // http://localhost:8099/restart
+// mvn spring-boot:run
 
 @SpringBootApplication
 @EnableAutoConfiguration // Spring Boot Auto Configuration
@@ -18,7 +19,7 @@ public class SpringBatchLoaderApplication {
 	private static ConfigurableApplicationContext context;
 	
 	public static void main(String[] args) {
-		context =  SpringApplication.run(SpringBatchApplication.class, args);
+		context =  SpringApplication.run(SpringBatchLoaderApplication.class, args);
 	}
 
 	public static void restart() {
@@ -26,10 +27,11 @@ public class SpringBatchLoaderApplication {
  
         Thread thread = new Thread(() -> {
             context.close();
-            context = SpringApplication.run(SpringBatchApplication.class, args.getSourceArgs());
+            context = SpringApplication.run(SpringBatchLoaderApplication.class, args.getSourceArgs());
         });
  
         thread.setDaemon(false);
         thread.start();
     }
+ 
 }
