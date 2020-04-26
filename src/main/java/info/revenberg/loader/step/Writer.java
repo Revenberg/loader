@@ -25,6 +25,7 @@ import org.apache.http.protocol.HttpContext;
 import info.revenberg.loader.objects.DataObject;
 
 import org.springframework.batch.item.ItemWriter;
+import java.util.concurrent.TimeUnit;
 
 public class Writer implements ItemWriter<DataObject> {
     private static int counter = 0;
@@ -87,7 +88,7 @@ public class Writer implements ItemWriter<DataObject> {
     }
 
     @Override
-    public void write(List<? extends DataObject> messages) {
+    public void write(List<? extends DataObject> messages) throws Exception {
         int count = 0;
         int retry = 3;
         for (DataObject msg : messages) {
@@ -112,7 +113,7 @@ public class Writer implements ItemWriter<DataObject> {
                 }
                 count++;
             }
-        }
+        }        
     }
 
 }

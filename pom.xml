@@ -105,14 +105,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>				
 				<configuration>
 					<mainClass>info.revenberg.loader.SpringBatchLoaderApplication</mainClass>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
+				</configuration>				
 			</plugin>
 		</plugins>
 	</build>

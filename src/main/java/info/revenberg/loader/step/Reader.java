@@ -10,6 +10,7 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
+import java.util.concurrent.TimeUnit;
 
 public class Reader implements ItemReader<DataObject> {
 
@@ -46,7 +47,8 @@ public class Reader implements ItemReader<DataObject> {
 
 	   if (!list.isEmpty()) {
 		   String element = list.get(0);
-		   list.remove(0);			
+           list.remove(0);	
+           TimeUnit.SECONDS.sleep(5);		
 		   return new DataObject(element);
 	   } 
 	   return null;
