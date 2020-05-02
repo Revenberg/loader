@@ -16,8 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @EnableBatchProcessing
 public class SpringBatchLoaderApplication {
 
-	private static ConfigurableApplicationContext context;
-	
+	private static ConfigurableApplicationContext context;	
 	public static void main(String[] args) {
 		context =  SpringApplication.run(SpringBatchLoaderApplication.class, args);
 	}

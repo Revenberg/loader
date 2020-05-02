@@ -91,29 +91,31 @@ public class Writer implements ItemWriter<DataObject> {
     public void write(List<? extends DataObject> messages) throws Exception {
         int count = 0;
         int retry = 3;
+        String rc = "";
         for (DataObject msg : messages) {
             if (msg != null) {
                 if (msg.getFilename() != "") {
                     counter++;
-                    System.out.println(Integer.toString(counter) + " " + Integer.toString(messages.size()) + " "
+                    System.out.println(Integer.toString(counter) + " " 
                             + Integer.toString(count) + " Writing the data " + " - " + msg.getBundleName() + " - "
                             + msg.getSongName());
                     retry = 15;
                     while (retry > 0) {
                         try {
-                            uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() + "/"
+                            rc = uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() + "/"
                                     + msg.getSongName(), msg.getFilename());
+                            System.out.println("oke");
                             retry = 0;
                         } catch (Exception e) {
                             retry--;
-                            System.out.println(Integer.toString(retry) + " Writing the data " + " - "
-                                    + msg.getBundleName() + " - " + msg.getSongName());
+                            System.out.println(e);
+                            TimeUnit.SECONDS.sleep(30);
                         }
                     }
                 }
                 count++;
             }
-        }        
+        }
     }
 
 }

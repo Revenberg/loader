@@ -11,8 +11,12 @@ import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import java.util.concurrent.TimeUnit;
+import info.revenberg.loader.service.BatchService;
 
 public class Reader implements ItemReader<DataObject> {
+
+    @Autowired
+    private BatchService batchService;
 
 	private File folder = null;
 	List<String> list = new ArrayList<>();
@@ -20,6 +24,10 @@ public class Reader implements ItemReader<DataObject> {
 	public static String location = "D:/pptx/";
 
     public static void search(final String pattern, final File folder, List<String> result, final String pre) {
+        Reader reader = new Reader();
+        Long count = reader.batchService.getLastReadCount();
+        System.out.println(count);
+        
         for (final File f : folder.listFiles()) {
 
             if (f.isDirectory()) {
@@ -47,10 +55,9 @@ public class Reader implements ItemReader<DataObject> {
 
 	   if (!list.isEmpty()) {
 		   String element = list.get(0);
-           list.remove(0);	
-           TimeUnit.SECONDS.sleep(5);		
+           list.remove(0);
 		   return new DataObject(element);
-	   } 
+	   }
 	   return null;
    }
 
